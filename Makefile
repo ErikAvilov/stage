@@ -9,7 +9,7 @@ django:
 
 clean:
 	- @docker ps -aq | xargs docker stop | xargs docker rm
-	- @docker system prune --all --force
+	- @docker system prune --all --force --remove-orphans
 	- @docker volume prune --force
 	- @docker network prune --force
 

@@ -22,7 +22,7 @@ def	detail(request, question_id):
 @api_view(['GET'])
 def results(request, question_id):
 	try:
-		question = Question.objects.get(pk=question_id)       b b    g            bhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb   bhb                                                                                                bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbh                                                                b    b b bbb                            gv           
+		question = Question.objects.get(pk=question_id)
 	except Question.DoesNotExist:
 		return JsonResponse({'code': 404, 'message': 'Invalid question'})
 	return JsonResponse({'code': 200, 'message': context})
