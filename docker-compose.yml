@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  react:
+    build: src/react
+    init: true
+    container_name: react
+    restart: always
+    volumes:
+      - ./src/react/my-app/src:/app/src
+    networks:
+      - ft_network
+    ports:
+      - "3000:3000"
+  
+  django:
+    build: src/django
+    init: true
+    container_name: django
+    restart: always
+    volumes:
+      - ./src/django/control_db:/app
+    networks:
+      - ft_network
+    ports:
+      - "8000:8000"
+
+networks:
+  ft_network:
+    driver: bridge

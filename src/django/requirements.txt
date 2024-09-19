@@ -1,0 +1,7 @@
+django
+python-dotenv
+requests
+uvicorn[standard]
+django-cors-headers
+djangorestframework
+whitenoise
