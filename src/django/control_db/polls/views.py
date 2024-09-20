@@ -22,10 +22,17 @@ def	detail(request, question_id):
 @api_view(['GET'])
 def results(request, question_id):
 	try:
-		question = Question.objects.get(pk=question_id)
+		question = Question.objects.get(id=question_id)
+		choices = list(Choice.objects.filter(question=question).values('id', 'choice_text', 'votes'))
+		print(question.choice_set.all())
+		context = {
+			'id': question.id,
+			'question_text': question.question_text,
+			'choices': choices,
+		}
 	except Question.DoesNotExist:
 		return JsonResponse({'code': 404, 'message': 'Invalid question'})
-	return JsonResponse({'code': 200, 'message': context})
+	return JsonResponse({'code': 200, 'context': context})
 
 @api_view(['POST'])
 def vote(request, question_id):

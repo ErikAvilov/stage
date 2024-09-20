@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 import { useState, useEffect, Component } from 'react';
@@ -73,19 +72,44 @@ const Question = () => {
 }
 
 const Results = () => {
-  const [htmlContent, setHtmlContent] = useState("");
+  const [content, setContent] = useState([]);
   const [error, setError] = useState(null);
   const id = useParams();
 
   useEffect(() => {
     axios.get('http://localhost:8000/polls/' + id.id + '/results/')
     .then((response) => {
-      console.log(response.data);
+      console.log(response.data.context.choices)
+      setContent(response.data.context)
     })
-  })
+    .catch((error) => {
+      console.error("There was an error fetching the results!", error);
+      setError({ message: error.code, code: error.response.status });
+    })
+    }, []);
+    
+  if (error)
+    return (
+      <ErrorPage message={error.message} code={error.code}/>
+    );
   return (
     <div>
-      <h1>{ htmlContent }</h1>
+      {content ? (
+      <>
+      <h1>{ content.question_text }</h1>
+        <ul>
+        { content.choices && content.choices.map((choice, index) => (
+          <li key={index}>
+            <label for={ 'choice' + index }>{ choice.choice_text }</label>
+            { choice.choice_text } - Votes: { choice.votes } | id: { choice.id }
+            <input type='radio' name='choice' id={ 'choice' + choice.id }/>
+          </li>
+        ))}
+        </ul>
+      </>
+      ) : (
+        <div>Loading...</div>
+      )}
     </div>
   );
 }
