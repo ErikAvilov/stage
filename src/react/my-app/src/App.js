@@ -94,7 +94,7 @@ const Results = () => {
     );
   return (
     <div>
-      {content ? (
+      { content ? (
       <>
       <h1>{ content.question_text }</h1>
         <ul>

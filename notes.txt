@@ -1,2 +1,6 @@
 https://www.youtube.com/watch?v=__mSgDEOyv8 | basic explanation of next.js
 https://www.youtube.com/watch?v=Rrz2q5uCHdE | difference between frameworks and which to use for which app
+
+Setup next.js + figure out nest
+https://nextjs.org/docs
+https://www.django-rest-framework.org/
