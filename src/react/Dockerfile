@@ -1,15 +1,13 @@
-FROM node:18
+FROM node:20
 
 WORKDIR /app
 
-COPY ./my-app/ .
+COPY ./next-app/ .
 
 RUN npm install
 
-RUN npm install react-router-dom
 RUN npm install axios
-RUN npm install react-bootstrap bootstrap
-
-CMD ["npm", "run", "start"]
 
 EXPOSE 3000
+
+CMD ["npm", "run", "dev"]

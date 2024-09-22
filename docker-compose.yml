@@ -7,7 +7,7 @@ services:
     container_name: react
     restart: always
     volumes:
-      - ./src/react/my-app/src:/app/src
+      - ./src/react/next-app/src:/app/src
     networks:
       - ft_network
     ports:
