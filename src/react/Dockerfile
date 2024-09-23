@@ -7,6 +7,7 @@ COPY ./next-app/ .
 RUN npm install
 
 RUN npm install axios
+RUN npm install react-bootstrap bootstrap
 
 EXPOSE 3000
 
