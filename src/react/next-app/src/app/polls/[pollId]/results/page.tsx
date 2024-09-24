@@ -11,8 +11,8 @@ import { headers } from 'next/headers';
 const ErrorPage = ({ status, message }: ErrorMessage) => {
 	return (
 	<div>
-		<h1> {message} </h1>
-		<strong> {status} </strong>
+		<h2> {message} </h2>
+		<strong> status: {status} </strong>
 	</div>
 	);
 };
@@ -63,9 +63,9 @@ export default function Detail( {params}: { params: { pollId: number; }; }) {
 
 	useEffect(() => {
 		axios.get('http://localhost:8000/polls/' + params.pollId + '/results/')
-		.then((response: AxiosResponse<Choices>) => {
-			console.log(response.data.context)
-			setHtmlContent(response.data.context)
+		.then((response) => {
+			console.log(response.data.results)
+			setHtmlContent(response.data.results)
 		})
 		.catch((error: AxiosResponse<ErrorMessage>) => {
 			if ((error)) {
@@ -86,12 +86,12 @@ export default function Detail( {params}: { params: { pollId: number; }; }) {
 			return <ErrorPage message={error.message} status={error.status} />
 	return (
 		<div>
-		<h1>{ htmlContent?.question_text }</h1>
+		<h1>{ 'lol' }</h1>
 			<ul>
-			{ htmlContent?.choices && htmlContent.choices.map((choice: ChoiceData, index: number) => (
+			{ htmlContent && htmlContent.map((choice: string, index: number) => (
 			<li>
 				<label htmlFor={ 'choice' + index }></label>
-				{ choice.choice_text } - Votes: { choice.votes } | id: { choice.id }
+				{ choice.choice_text } - Votes: { choice.votes }
 				<input onChange={handleChange} type='radio' name='choice' id={ 'choice' + choice.id } value={choice.id}/>
 			</li>
 			))}

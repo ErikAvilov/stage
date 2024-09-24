@@ -10,7 +10,7 @@ const ErrorPage = ({ status, message }: ErrorMessage) => {
 	return (
 	<div>
 		<h1> {message} </h1>
-		<strong> {status} </strong>
+		<strong> status: {status} </strong>
 	</div>
 	);
 };
@@ -26,7 +26,8 @@ export default function Polls() {
 	useEffect(() => {
 		axios.get('http://localhost:8000/polls/')
 		.then((response: AxiosResponse<QuestionData[]>) => {
-		setHtmlContent(response.data);
+			console.log(response.data.results);
+		setHtmlContent(response.data.results);
 		})
 		.catch((error: AxiosResponse<ErrorMessage>) => {
 		  if ((error)) {
