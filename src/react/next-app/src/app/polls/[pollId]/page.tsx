@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { ErrorMessage, QuestionData, ChoiceData, Choices, BasicResponse } from '../../../interfaces/index';
+import { ErrorMessage, QuestionData, ChoiceData, Choices, BasicResponse } from '../../interfaces/index';
 import { useRouter } from 'next/navigation';
 import { headers } from 'next/headers';
 
@@ -62,10 +62,10 @@ export default function Detail( {params}: { params: { pollId: number; }; }) {
 	};
 
 	useEffect(() => {
-		axios.get('http://localhost:8000/polls/' + params.pollId + '/results/')
+		axios.get('http://localhost:8000/polls/' + params.pollId)
 		.then((response) => {
-			console.log(response.data.results)
-			setHtmlContent(response.data.results)
+			console.log(response.data)
+			setHtmlContent(response.data)
 		})
 		.catch((error: AxiosResponse<ErrorMessage>) => {
 			if ((error)) {
@@ -85,18 +85,18 @@ export default function Detail( {params}: { params: { pollId: number; }; }) {
 		if (error)
 			return <ErrorPage message={error.message} status={error.status} />
 	return (
-		<div>
-		<h1>{ 'lol' }</h1>
-			<ul>
-			{ htmlContent && htmlContent.map((choice: string, index: number) => (
-			<li>
-				<label htmlFor={ 'choice' + index }></label>
-				{ choice.choice_text } - Votes: { choice.votes }
-				<input onChange={handleChange} type='radio' name='choice' id={ 'choice' + choice.id } value={choice.id}/>
-			</li>
-			))}
-			</ul>
-			<button onClick={handleSubmit} type='submit' value='Vote'>Vote</button>
-		</div>
+	<div>
+	<h1>{ htmlContent?.question_text }</h1>
+		<ul>
+		{ htmlContent && htmlContent.choices.map((choice: ChoiceData, index: number) => (
+		<li>
+			<label htmlFor={ 'choice' + index }></label>
+			{ choice.choice_text } - Votes: { choice.votes }
+			<input onChange={handleChange} type='radio' name='choice' id={ 'choice' + choice.id } value={choice.id}/>
+		</li>
+		))}
+		</ul>
+		<button onClick={handleSubmit} type='submit' value='Vote'>Vote</button>
+	</div>
 	);
 }

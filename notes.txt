@@ -4,3 +4,14 @@ https://www.youtube.com/watch?v=Rrz2q5uCHdE | difference between frameworks and 
 Setup next.js + figure out nest
 https://nextjs.org/docs
 https://www.django-rest-framework.org/
+
+react-query
+https://www.youtube.com/watch?v=Z4L_UE0hVmo
+https://www.youtube.com/watch?v=8K1N3fE-cDs
+https://tanstack.com/query/latest/docs/framework/react/quick-start
+"A few things:
+1. You can nest SSR components inside CSR components, it just leaves a slot for the SSR component.
+2. "All the benefit of using Next.js" does not end at SSR. There is so much more to it, like a solid page router, server actions, and a ton of other built-in goodies.
+3. ALSO, 'use client' doesn't actually remove the benefits of SSR.
+When a client is marked with 'user client', the static page is still generated on the server,
+as much as it can, but is then hydrated on the client."

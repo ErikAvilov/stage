@@ -20,7 +20,7 @@ export default function Polls() {
 	const [ error, setError ] = useState<ErrorMessage | null>(null);
 	const router = useRouter();
 	const navigateToDetail = (id: number) => {
-		router.push(`/polls/${id}/results`);
+		router.push(`/polls/${id}`);
 	}
 
 	useEffect(() => {

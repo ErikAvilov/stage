@@ -4,10 +4,14 @@ WORKDIR /app
 
 COPY ./next-app/ .
 
-RUN npm install
+# i = install
+RUN npm i
 
-RUN npm install axios
-RUN npm install react-bootstrap bootstrap
+RUN npm i axios
+RUN npm i react-bootstrap bootstrap
+
+RUN npm i @tanstack/react-query
+RUN npm i @tanstack/eslint-plugin-query
 
 EXPOSE 3000
 
