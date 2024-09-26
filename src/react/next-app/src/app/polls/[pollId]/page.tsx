@@ -25,13 +25,11 @@ export default function Detail( {params}: { params: { pollId: number; }; }) {
 
 	const handleChange = (e:any) => {
 		const { value } = e.target;
-		console.log('value set to: ' + value)
 		setVote(value);
 	};
 
 	const handleSubmit = (e:any) => {
 		e.preventDefault();
-		console.log('sending: ' + vote)
 		axios.post('http://localhost:8000/polls/' + params.pollId + '/vote/', {
 			'choice': vote,
 		})
@@ -64,7 +62,6 @@ export default function Detail( {params}: { params: { pollId: number; }; }) {
 	useEffect(() => {
 		axios.get('http://localhost:8000/polls/' + params.pollId)
 		.then((response) => {
-			console.log(response.data)
 			setHtmlContent(response.data)
 		})
 		.catch((error: AxiosResponse<ErrorMessage>) => {
@@ -82,8 +79,8 @@ export default function Detail( {params}: { params: { pollId: number; }; }) {
 		  });
 	  }, []);
 		
-		if (error)
-			return <ErrorPage message={error.message} status={error.status} />
+	if (error)
+		return <ErrorPage message={error.message} status={error.status} />
 	return (
 	<div>
 	<h1>{ htmlContent?.question_text }</h1>

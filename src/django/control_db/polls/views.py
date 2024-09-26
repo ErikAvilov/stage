@@ -19,10 +19,8 @@ class ChoiceList(generics.RetrieveAPIView):
 		return Question.objects.get(id=self.kwargs['question_id'])
 
 class PostVote(generics.UpdateAPIView):
+	queryset = Choice.objects.all()
 	serializer_class = ChoiceSerializer
-
-	def get_queryset(self):
-		return Choice.objects.filter(question_id=self.kwargs['question_id'])
 
 	def perform_update(self, serializer):
 		serializer.save(votes=F('votes') + 1)

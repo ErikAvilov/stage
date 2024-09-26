@@ -14,3 +14,8 @@ export interface Choices {
 	question_text: QuestionData['question_text'];
 	choices: ChoiceData[];
 }
+
+export interface Vote {
+	vote: number;
+	message: string;
+}

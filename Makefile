@@ -2,7 +2,7 @@ all:
 	- @docker-compose up -d --build
 
 react:
-	- @docker exec -it react /bin/sh
+	- @docker exec -it react zsh
 
 django:
 	- @docker exec -it django zsh

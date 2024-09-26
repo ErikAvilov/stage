@@ -11,9 +11,9 @@ export default function RootQuery({children}: {children: React.ReactNode;})
   return (
 	<MyQueryProvider>
 		<html lang="en">
-		<body>
-			{children}
-		</body>
+			<body>
+				{children}
+			</body>
 		</html>
 	</MyQueryProvider>
   );
